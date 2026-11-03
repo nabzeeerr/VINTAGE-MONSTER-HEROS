@@ -19,4 +19,16 @@ export default class DB {
 
         return response.json();
     }
+
+    static async update(id, monster) {
+        const response = await fetch(this.apiURL + "monsters/" + id, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(monster)
+        });
+
+        return response.json();
+    }
 }

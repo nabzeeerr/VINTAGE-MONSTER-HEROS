@@ -25,6 +25,11 @@ export default class MonsterList {
         };
 
         await DB.create(monster);
+
+        this.domElmt.querySelector("#monster-name").value = "";
+        this.domElmt.querySelector("#monster-danger").value = "";
+        this.domElmt.querySelector("#monster-year").value = "";
+
         await this.loadMonsters();
     }
     render() {
