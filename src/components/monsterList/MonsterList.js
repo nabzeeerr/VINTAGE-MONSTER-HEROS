@@ -1,6 +1,5 @@
 import DB from '../../DB';
 import Monster from "../monster/Monster";
-import getTemplate from "./template"
 
 export default class MonsterList {
     constructor(data) {
@@ -15,9 +14,11 @@ export default class MonsterList {
         this.render();
     }
     render() {
-        this.domElmt.innerHTML = getTemplate();
-        this.monsters.forEach(todo =>
-            todo.render(this.domElmt.querySelector(".todo-list"))
-        );
-    }
+    const container = this.domElmt.querySelector("#monsters-container");
+    container.innerHTML = "";
+
+    this.monsters.forEach(monster => {
+        monster.render(container);
+    });
+}
 }

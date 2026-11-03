@@ -9,8 +9,8 @@ export default class Monster {
         this.year = data.year;
     }
     render(elmt) {
-        const template = document.createElement('div');
+        const template = document.createElement('template');
         template.innerHTML = getTemplate(this);
-        elmt.append(template);
+        elmt.append(template.content);
     }
 }
