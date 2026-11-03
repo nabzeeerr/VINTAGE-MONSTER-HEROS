@@ -37,6 +37,7 @@ export default class MonsterList {
     container.innerHTML = "";
 
     this.monsters.forEach(monster => {
+        this.domElmt.querySelector("#monsters-count").textContent = this.monsters.length;
         monster.render(container);
     });
 }

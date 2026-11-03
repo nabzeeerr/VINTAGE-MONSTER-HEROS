@@ -49,6 +49,9 @@ export default class Monster {
     row.querySelector(".btn-delete").addEventListener("click", async () => {
             await DB.delete(this.id);
             row.remove();
+
+            const count = document.querySelector("#monsters-count");
+            count.textContent = Number(count.textContent) - 1;
         });
 }
 }
