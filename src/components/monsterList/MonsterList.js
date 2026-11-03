@@ -1,5 +1,6 @@
 import DB from '../../DB';
 import Monster from "../monster/Monster";
+import './styles.css'
 
 export default class MonsterList {
     constructor(data) {
@@ -9,6 +10,9 @@ export default class MonsterList {
         this.loadMonsters();
         this.domElmt.querySelector(".btn-lipstick").addEventListener("click", () => {
             this.addMonster();
+        });
+        this.domElmt.querySelector("#search-monsters").addEventListener("input", (event) => {
+            this.searchMonsters(event.target.value);
         });
     }
     async loadMonsters () {
@@ -32,13 +36,27 @@ export default class MonsterList {
 
         await this.loadMonsters();
     }
-    render() {
-    const container = this.domElmt.querySelector("#monsters-container");
-    container.innerHTML = "";
+    searchMonsters(search) {
+        const filteredMonsters = this.monsters.filter(monster => {
+            return monster.name.toLowerCase().includes(search.toLowerCase())
+                || monster.type.toLowerCase().includes(search.toLowerCase());
+        });
 
-    this.monsters.forEach(monster => {
+        const container = this.domElmt.querySelector("#monsters-container");
+        container.innerHTML = "";
+
+        filteredMonsters.forEach(monster => {
+            monster.render(container);
+        });
+    }
+    render() {
+        const container = this.domElmt.querySelector("#monsters-container");
+        container.innerHTML = "";
+
         this.domElmt.querySelector("#monsters-count").textContent = this.monsters.length;
-        monster.render(container);
-    });
-}
+
+        this.monsters.forEach(monster => {
+            monster.render(container);
+        });
+    }
 }
