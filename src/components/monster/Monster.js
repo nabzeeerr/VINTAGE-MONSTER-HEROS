@@ -23,12 +23,14 @@ export default class Monster {
     });
 
     row.querySelector(".btn-check").addEventListener("click", async () => {
+
         const monster = {
             name: row.querySelector(".input-name").value,
             type: row.querySelector(".input-type").value,
             dangerLevel: Number(row.querySelector(".input-danger").value),
             year: Number(row.querySelector(".input-year").value)
         };
+
         await DB.update(this.id, monster);
         this.name = monster.name;
         this.type = monster.type;
@@ -43,5 +45,10 @@ export default class Monster {
         
         row.classList.remove("isEditing");
     });
+
+    row.querySelector(".btn-delete").addEventListener("click", async () => {
+            await DB.delete(this.id);
+            row.remove();
+        });
 }
 }

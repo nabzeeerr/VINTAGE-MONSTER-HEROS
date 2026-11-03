@@ -31,4 +31,12 @@ export default class DB {
 
         return response.json();
     }
+
+    static async delete(id) {
+        const response = await fetch(this.apiURL + "monsters/" + id, {
+            method: "DELETE"
+        });
+
+        return response.json();
+    }
 }
